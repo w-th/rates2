@@ -23,10 +23,6 @@ table = """<!doctype html>
 <body>
 <table border="1">
 <tr><th>主要貨幣</th><th>匯率</th></tr>
-{0}
-</table>
-</body>
-</html>
 """
 templ = "<tr><td>{0}</td><td>{1}</td></tr>"
 
@@ -48,6 +44,7 @@ def get_us_index():
 
 def parse():
   global money
+  global table
   get_us_index()
   #params = urllib.parse.urlencode()
   response = urllib.request.urlopen(index_url,data=arg.format(1).encode('utf-8'))
@@ -92,7 +89,8 @@ def parse():
   res['USDIDX'] = money['USDIDX']
   #[print("{0} = {1}".format(i, money[i])) for i in money if i != 'USDIDX']
   [res.setdefault(i,format_number(money[i],pnt[i])) for i in money if i != 'USDIDX']
-  output = table.format("\n".join([templ.format(i, res[i]) for i in seq]))
+  output = table + "\n".join([templ.format(i, res[i]) for i in seq])
+  output = output + "\n</table>\n</body>\n</html>"
   return output
 
 #from app import app as application
