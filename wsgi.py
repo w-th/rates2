@@ -11,8 +11,8 @@ splitpat = "width='11%' class='rt'>"
 
 money = {'CNH':0.0,'EUR':0.0,'AUD':0.0,'TWD':0.0,'KRW':0.0,'CHF':0.0,'CAD':0.0,'GBP':0.0,'JPY':0.0,'SGD':0.0,'USDIDX':0.0}
 pnt = {'CNH':0,'EUR':0,'AUD':0,'TWD':0,'KRW':0,'CHF':0,'CAD':0,'GBP':0,'JPY':0,'SGD':0}
-seq = ["USDIDX", "CNH", "EUR", "AUD", "TWD", "SGD", "KRW", "CHF", "CAD",
-    "GBP","JPY"]
+seq = ["USDIDX", "JPY", "EUR", "GBP", "CHF", "CAD", "AUD", "TWD", "CNH",
+    "KRW","SGD"]
 
 res = {}
 table = """<!doctype html>
