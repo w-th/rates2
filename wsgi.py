@@ -110,9 +110,10 @@ def application(environ, start_response):
         response_body = 'not found'.encode('utf-8')
         response_size = str(len(response_body))
       else:
+        static_dir = os.path.dirname(environ['SCRIPT_FILENAME']) + '/static/'
         ctype = 'application/octet-stream'
-        response_size = str(os.path.getsize("static/" + fname))
-        response_body = open("static/" + fname,"rb").read()
+        response_size = str(os.path.getsize(static_dir + fname))
+        response_body = open(static_dir + fname,"rb").read()
       response_headers = [('Content-Type', ctype),
           ('Content-Length', response_size)]
       status = '200 OK'
