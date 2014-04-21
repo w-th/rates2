@@ -61,9 +61,6 @@ def parse():
   # TWD
   money['TWD'] = [float(i['FC']) for i in a['quotes'] if i['FSymbol2']=='USDTWD'][0]
   pnt['TWD'] = [int(i['FDPnt']) for i in a['quotes'] if i['FSymbol2']=='USDTWD'][0]
-  # KRW
-  money['KRW'] = [float(i['FC']) for i in a['quotes'] if i['FSymbol2']=='USDKRW'][0]
-  pnt['KRW'] = [int(i['FDPnt']) for i in a['quotes'] if i['FSymbol2']=='USDKRW'][0]
   # CHF
   money['CHF'] = [float(i['FC']) for i in a['quotes'] if i['FSymbol2']=='USDCHF'][0]
   pnt['CHF'] = [int(i['FDPnt']) for i in a['quotes'] if i['FSymbol2']=='USDCHF'][0]
@@ -84,6 +81,9 @@ def parse():
   a = json.loads(html.decode('utf-8'))
   money['SGD'] = [float(i['FC']) for i in a['quotes'] if i['FSymbol2']=='USDSGD'][0]
   pnt['SGD'] = [int(i['FDPnt']) for i in a['quotes'] if i['FSymbol2']=='USDSGD'][0]
+  # KRW
+  money['KRW'] = [float(i['FC']) for i in a['quotes'] if i['FSymbol2']=='USDKRW'][0]
+  pnt['KRW'] = [int(i['FDPnt']) for i in a['quotes'] if i['FSymbol2']=='USDKRW'][0]
 
   res['USDIDX'] = money['USDIDX']
   #[print("{0} = {1}".format(i, money[i])) for i in money if i != 'USDIDX']
