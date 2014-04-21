@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-import os
-import re, urllib.request, datetime, json, urllib, pdb
+import os, re, urllib.request, datetime, json, urllib, pdb
 
 #other_url = "http://traderoom.cnyes.com/global/forex.aspx"
 index_url = "http://traderoom.cnyes.com/global/provider.aspx"
@@ -103,6 +102,22 @@ def application(environ, start_response):
         response_body = ['%s: %s' % (key, value)
                     for key, value in sorted(environ.items())]
         response_body = '\n'.join(response_body)
+    elif re.search('/static',environ['PATH_INFO']):
+      fname = re.sub('/static/','', environ['PATH_INFO'])
+      fname1 = re.sub('/static','', environ['PATH_INFO'])
+      if len(fname) == 0 or len(fname1) == 0:
+        ctype = "text/plain"
+        response_body = 'not found'.encode('utf-8')
+        response_size = str(len(response_body))
+      else:
+        ctype = 'application/octet-stream'
+        response_size = str(os.path.getsize("static/" + fname))
+        response_body = open("static/" + fname,"rb").read()
+      response_headers = [('Content-Type', ctype),
+          ('Content-Length', response_size)]
+      status = '200 OK'
+      start_response(status, response_headers)
+      return [response_body]
     else:
         ctype = 'text/html'
         response_body = parse()
